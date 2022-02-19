@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "costruction-companies": "apps/costruction-companies",
+    "costruction-companies-e2e": "apps/costruction-companies-e2e"
+  }
+}

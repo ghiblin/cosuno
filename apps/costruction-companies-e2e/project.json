@@ -1,0 +1,28 @@
+{
+  "root": "apps/costruction-companies-e2e",
+  "sourceRoot": "apps/costruction-companies-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/costruction-companies-e2e/cypress.json",
+        "devServerTarget": "costruction-companies:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "costruction-companies:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/costruction-companies-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["costruction-companies"]
+}

@@ -1,0 +1,74 @@
+{
+  "root": "apps/costruction-companies",
+  "sourceRoot": "apps/costruction-companies/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/costruction-companies",
+        "index": "apps/costruction-companies/src/index.html",
+        "baseHref": "/",
+        "main": "apps/costruction-companies/src/main.tsx",
+        "polyfills": "apps/costruction-companies/src/polyfills.ts",
+        "tsConfig": "apps/costruction-companies/tsconfig.app.json",
+        "assets": [
+          "apps/costruction-companies/src/favicon.ico",
+          "apps/costruction-companies/src/assets"
+        ],
+        "styles": ["apps/costruction-companies/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/costruction-companies/src/environments/environment.ts",
+              "with": "apps/costruction-companies/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "costruction-companies:build",
+        "hmr": true,
+        "proxyConfig": "apps/costruction-companies/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "costruction-companies:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/costruction-companies/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/costruction-companies"],
+      "options": {
+        "jestConfig": "apps/costruction-companies/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
