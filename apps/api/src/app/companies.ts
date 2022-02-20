@@ -24,7 +24,13 @@ function byName(q: string) {
  * @param specialties list of specialties to check
  * @returns filter function
  */
-function bySpecialties(specialties: Specialty[]) {
+function bySpecialties(specialties?: Specialty[]) {
+  // if no specialties are passed, return an identity function
+  if (!specialties) {
+    return function () {
+      return true;
+    };
+  }
   return function (company: Company): boolean {
     return specialties.every((specialty) =>
       company.specialties.includes(specialty)
@@ -51,14 +57,16 @@ export function addCompaniesRoutes(app: Express) {
     ],
     (req: Request, res: Response) => {
       if (!validationResult(req).isEmpty()) {
-        return res.status(422).json({ errors: validationResult(req) });
+        return res.status(422).json(validationResult(req));
       }
       const q = (req.query.q as string) || '';
-      const s = ((req.query.s as string) || '').split(',') as Specialty[];
-      res.send(
-        companies.filter(byName(q.toLowerCase())).filter(bySpecialties(s))
-      );
-      companies.filter;
+      const s = req.query.s
+        ? ((req.query.s as string).split(',') as Specialty[])
+        : null;
+      const filtered = companies
+        .filter(byName(q.toLowerCase()))
+        .filter(bySpecialties(s));
+      res.json(filtered);
     }
   );
 }
