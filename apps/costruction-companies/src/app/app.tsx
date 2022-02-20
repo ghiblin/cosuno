@@ -1,7 +1,7 @@
-import { Stack } from '@chakra-ui/react';
+import { Heading, Stack } from '@chakra-ui/react';
 import { Company, specialties, Specialty } from '@cosuno/api-interfaces';
 import React, { ChangeEventHandler, useEffect, useState } from 'react';
-import { getCompanies } from './api';
+import API from './api';
 import CompanyCard from './components/company-card';
 import SearchField from './components/search-field';
 import Specielties from './components/checkbox-group';
@@ -20,7 +20,7 @@ export const App = () => {
   };
 
   useEffect(() => {
-    getCompanies({ q: query, s: checked }).then(setCompanies);
+    API.getCompanies({ q: query, s: checked }).then(setCompanies);
   }, [query, checked]);
 
   return (
@@ -33,11 +33,24 @@ export const App = () => {
       p={4}
       gap={4}
     >
-      <SearchField value={query} onChange={onSearchChange} />
-      <Specielties options={specialties} onChange={onSpecialtyChange} />
+      <Heading>Find a company</Heading>
+      <SearchField
+        value={query}
+        onChange={onSearchChange}
+        data-testid="search-bar"
+      />
+      <Specielties
+        options={specialties}
+        onChange={onSpecialtyChange}
+        data-testid="specialties-filter"
+      />
       {companies.length &&
         companies.map((company) => (
-          <CompanyCard key={company.id} company={company} />
+          <CompanyCard
+            key={company.id}
+            company={company}
+            data-testid="company-card"
+          />
         ))}
     </Stack>
   );

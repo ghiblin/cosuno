@@ -1,13 +1,13 @@
-import { Avatar, Box, Heading, Text } from '@chakra-ui/react';
+import { Avatar, Box, BoxProps, Heading, Text } from '@chakra-ui/react';
 import { Company } from '@cosuno/api-interfaces';
 
 type CompanyCardProps = {
   company: Company;
-};
+} & BoxProps;
 
-export default function CompanyCard({ company }: CompanyCardProps) {
+export default function CompanyCard({ company, ...props }: CompanyCardProps) {
   return (
-    <Box rounded={'lg'} textAlign={'center'}>
+    <Box rounded={'lg'} textAlign={'center'} {...props}>
       <Avatar
         size={'xl'}
         src={company.logo}

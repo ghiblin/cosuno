@@ -20,11 +20,13 @@ function getCheckedOptions<T extends string>(
 type CheckboxGroupProps<T extends string> = {
   options: readonly T[];
   onChange: (checked: T[]) => void;
+  name?: string;
 };
 
 export default function CheckboxGroup<T extends string>({
   options,
   onChange,
+  ...props
 }: CheckboxGroupProps<T>) {
   const [cheked, setChecked] = useState(getInitialChecked(options));
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -43,6 +45,7 @@ export default function CheckboxGroup<T extends string>({
       direction={'row'}
       wrap={'wrap'}
       justifyContent={'center'}
+      {...props}
     >
       {options.map((option) => (
         <Checkbox
