@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Message } from '@cosuno/api-interfaces';
+// import { Message } from '@cosuno/api-interfaces';
 
 export const App = () => {
-  const [m, setMessage] = useState<Message>({ message: '' });
+  // const [m, setMessage] = useState<Message>({ message: '' });
 
-  useEffect(() => {
-    fetch('/api')
-      .then((r) => r.json())
-      .then(setMessage);
-  }, []);
+  // useEffect(() => {
+  //   fetch('/api')
+  //     .then((r) => r.json())
+  //     .then(setMessage);
+  // }, []);
 
   return (
     <>
@@ -20,7 +20,7 @@ export const App = () => {
           alt="Nx - Smart, Fast and Extensible Build System"
         />
       </div>
-      <div>{m.message}</div>
+      {/* <div>{m.message}</div> */}
     </>
   );
 };

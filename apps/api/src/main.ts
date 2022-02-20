@@ -1,13 +1,8 @@
 import * as express from 'express';
-import { Message } from '@cosuno/api-interfaces';
+import { addCompaniesRoutes } from './app/companies';
 
 const app = express();
-
-const greeting: Message = { message: 'Welcome to api!' };
-
-app.get('/api', (req, res) => {
-  res.send(greeting);
-});
+addCompaniesRoutes(app);
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {
